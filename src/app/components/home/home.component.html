@@ -1,1 +1,48 @@
-<p>home works!</p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-12 text-center py-5"><h1 class="py-2"> Antichi Delitti</h1>
+    <img src="assets/home/402575411_7057286634293363_4631249643212813791_n.jpg" alt="" class="rounded shadow" data-aos="fade-up" data-aos-duration="3000"></div>
+    <hr>
+    <div class="col-md-12 text-center py-5">
+      <div class="row">
+        <div class="col-md-4">
+         <h2>Il libro</h2>
+      <img src="../../../assets/home/libro.jpg" alt="" class="w-100" data-aos="fade-right" data-aos-duration="3000">
+        </div>
+        <div class="col-md-8 py-5">
+          <p class="fs-2">⭐⭐⭐⭐⭐</p>
+          <p class="fs-4" data-aos="fade-left" data-aos-duration="3000">
+            Antichi delitti presenta – nella doppia accezione di rendere presente qualcosa di già accaduto in quanto antico e di mostrare al lettore la natura dell’oggetto del suo contenuto: delitti – una raccolta di storie realmente accadute che nascono in seguito a un tuo attento studio dei processi penali custoditi nell’Archivio di Stato di Cosenza. È dunque un viaggio nel tempo in un’epoca lontana che, nell’immaginario comune, tendiamo a identificare come più sicura rispetto a quella che stiamo vivendo, dove l’ordine e la disciplina dovevano farla da padrone. Un periodo storico a cui guardiamo con nostalgia mentre lo identifichiamo come una sorta di “età dell’oro”. Ma è davvero così?
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <p>
+      </p>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="border-bottom border-danger p-4">CERCA NEL SITO</h1>
+          <form [formGroup]="searchForm" class="d-flex justify-content-center">
+            <div class="p-2"> <label for="" class="fw-bold text-success">Titolo</label>
+          <input type="text" class="form-control shadow mx-2"></div>
+
+          <div class="p-2"><label for="" class="fw-bold text-success">Località</label>
+          <input type="text" class="form-control shadow mx-2"></div>
+
+          <div class="p-2"><label for="" class="fw-bold text-success">Tema</label>
+          <input type="text" class="form-control shadow mx-2"></div>
+
+          <div class="p-2"><label for="" class="fw-bold text-success">Categoria</label>
+          <input type="text" class="form-control shadow mx-2"></div>
+
+          <button class="btn fs-4 p-2" (click)="search()">🔍</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

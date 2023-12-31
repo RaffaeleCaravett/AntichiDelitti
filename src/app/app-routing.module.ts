@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'avvertenza', loadChildren: () => import('../app/components/avvertenza/avvertenza.module').then(m => m.AvvertenzaModule) },
   { path: 'pubblicita', loadChildren: () => import('../app/components/pubblicita/pubblicita.module').then(m => m.PubblicitaModule) },
   { path: 'contattaci', loadChildren: () => import('../app/components/contattaci/contattaci.module').then(m => m.ContattaciModule) },
+  { path: 'office', loadChildren: () => import('./components/office/office/office.module').then(m => m.OfficeModule) },
 ];
 
 @NgModule({
