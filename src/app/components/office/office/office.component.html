@@ -1,7 +1,57 @@
-<div class="container">
+<div class="container text-center">
 <div class="row">
   <div class="col-md-12 py-5">
-    Benvenuto nel tuo ufficio
+    <h1>    Benvenuto nel tuo ufficio
+    </h1>
+  </div>
+  <div class="col-md-4">
+      <img src="../../../../assets/office/402656007_7060805037274856_2428459461903121480_n.jpg" alt="" class="w-100 rounded border shadow-lg" >
+  </div>
+  <div class="col-md-8 p-5">
+    <ul class="list-group">
+      <li class="list-group-item"><button class="btn" (click)="daFare='aggiungiStoria'">Inserisci una storia</button></li>
+      <li class="list-group-item"><button class="btn" (click)="daFare='vediStoria'">Vedi le tue storie</button></li>
+      <li class="list-group-item"><button class="btn" (click)="daFare='statistiche'">Statistiche</button></li>
+      <li class="list-group-item"><button class="btn" (click)="daFare='modifica'">Aggiungi/Rimuovi categorie</button></li>
+      <li class="list-group-item"><button class="btn" (click)="daFare='rimuoviStoria'">Rimuovi una storia</button></li>
+    </ul>
+  </div>
+  <div class="col-md-12 py-5 text-center"
+  *ngIf="daFare=='aggiungiStoria'">
+<h1>Aggiungi una storia</h1>
+<div class="w-100 d-flex">
+  <button class="btn btn-light m-1 border" (click)="image.click()">Aggiungi media</button>
+</div>
+<div class="w-100 p-3 bg-light">
+  <form [formGroup]="articoloForm" class="text-center">
+    <div class="row">
+      <div class="col-md-8">
+        <label for="">Titolo :</label>
+    <input type="text" formControlName="titolo" class="form-control w-50 m-auto my-2 fs-1">
+      </div>
+      <div class="col-md-4">
+        <label for="">Seleziona categoria :</label>
+        <select name="" id="" class="form-select my-2" formControlName="categoria"></select>
+        <label for="">Inserisci tag :</label>
+        <input type="text" class="form-control my-2" formControlName="tag">
+      </div>
+      <div class="col-md-12">
+<label for="">Testo :</label>
+    <textarea
+    formControlName="testo"
+    class="form-control my-2"
+  name=""
+  id=""
+  cols="30"
+  rows="10"
+></textarea>
+<input type="file" class="d-none" formControlName="image" #image>
+      </div>
+      <div class="col-md-12 text-end">
+        <button class="btn btn-primary">Posta</button>
+      </div>
+    </div>  </form>
+</div>
   </div>
 </div>
 </div>
