@@ -32,9 +32,7 @@ export class AuthService {
 log(body:{}){
   return this.http.post(environment.API_URL+this.login,body)
 }
-authenticateUser(){
 
-}
 verifyToken(token:string){
   return this.http.get(environment.API_URL+this.verifyTkn+token)
 }

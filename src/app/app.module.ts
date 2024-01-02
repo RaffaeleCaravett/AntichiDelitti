@@ -9,8 +9,9 @@ import { RouteGuard } from './core/route.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorsComponent } from './shared/errors/errors.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthTokenInterceptor } from './core/auth.token.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,12 @@ import { MatButtonModule } from '@angular/material/button';
 
   ],
   exports:[ErrorsComponent],
-  providers: [RouteGuard],
+  providers: [RouteGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthTokenInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

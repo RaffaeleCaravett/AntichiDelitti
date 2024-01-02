@@ -35,18 +35,15 @@ this.auth.log(
 ).subscribe((data:any)=>{
   localStorage.setItem('accessToken',data.tokens.accessToken)
   localStorage.setItem('refreshToken',data.tokens.refreshToken)
-
   this.auth.setToken(data.tokens.accessToken);
   this.auth.setRefreshToken(data.tokens.refreshToken);
   this.guard.authenticateUser(true)
   this.router.navigate(['/office'])
 },(err:any)=>{
-  console.log(err)
   const dialogRef = this.dialog.open(ErrorsComponent,{
     data:err
   })
   dialogRef.afterClosed().subscribe((data:any)=>{
-    console.log(data)
   })
 })
 }else{

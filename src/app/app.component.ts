@@ -20,6 +20,7 @@ constructor(private auth:AuthService,private guard : RouteGuard,private router:R
 if(localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
 this.auth.verifyToken(localStorage.getItem('accessToken')!).subscribe((data:any)=>{
   if(data){
+    this.auth.setToken(localStorage.getItem('accessToken')!)
 this.guard.authenticateUser(true)
 this.router.navigate(['office'])
 localStorage.setItem('user',JSON.stringify(data))
@@ -27,6 +28,7 @@ localStorage.setItem('user',JSON.stringify(data))
 },err=>{
   this.auth.verifyRefreshToken(localStorage.getItem('refreshToken')!).subscribe((data:any)=>{
     if(data){
+      this.auth.setRefreshToken(localStorage.getItem('refreshToken')!)
 this.guard.authenticateUser(true)
 this.router.navigate(['office'])
 localStorage.setItem('user',JSON.stringify(data))

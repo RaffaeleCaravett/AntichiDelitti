@@ -1,5 +1,10 @@
 <div class="container text-center">
 <div class="row">
+  <div class="col-md-1">
+    <button class="btn btn-danger m-2" (click)="logout()">
+      Logout
+    </button>
+  </div>
   <div class="col-md-12 py-5">
     <h1>    Benvenuto nel tuo ufficio
     </h1>
@@ -23,18 +28,65 @@
   <button class="btn btn-light m-1 border" (click)="image.click()">Aggiungi media</button>
 </div>
 <div class="w-100 p-3 bg-light">
-  <form [formGroup]="articoloForm" class="text-center">
+  <div class="row p-5 border shadow rounded m-2">
+    <div class="col-md-3">
+      <form [formGroup]="addCategoria">
+        <label for="">Aggiungi categoria :</label>
+        <input  class="form-control my-2" formControlName="addCategoria">
+      <button class="btn" (click)="addCategory()">Aggiungi categoria</button>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <form [formGroup]="addTema">
+        <label for="">Aggiungi tema :</label>
+        <input  class="form-control my-2" formControlName="addTema">
+      <button class="btn" (click)="addThema()">Aggiungi tema</button>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <form [formGroup]="addTag">
+        <label for="">Aggiungi tag :</label>
+        <input  class="form-control my-2" formControlName="addTag">
+      <button class="btn" (click)="addTags()">Aggiungi tag</button>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <form [formGroup]="addLuogo">
+        <label for="">Aggiungi luogo :</label>
+        <input  class="form-control my-2" formControlName="addLuogo">
+      <button class="btn" (click)="addPlace()">Aggiungi luogo</button>
+      </form>
+    </div>
+  </div>
+  <form [formGroup]="articoloForm" class="text-center py-5">
     <div class="row">
       <div class="col-md-8">
         <label for="">Titolo :</label>
     <input type="text" formControlName="titolo" class="form-control w-50 m-auto my-2 fs-1">
       </div>
       <div class="col-md-4">
-        <label for="">Seleziona categoria :</label>
-        <select name="" id="" class="form-select my-2" formControlName="categoria"></select>
-        <label for="">Inserisci tag :</label>
-        <input type="text" class="form-control my-2" formControlName="tag">
-      </div>
+        <div class="row">
+          <div class="col-md-6"><label for="">Seleziona categoria :</label>
+        <select name="" id="" class="form-select my-2" formControlName="categoriaList">
+          <option value=""></option>
+          <option value="{{c.id}}" *ngFor="let c of categorie">{{c.category}} </option>
+        </select></div>
+          <div class="col-md-6"><label for="">Seleziona luogo :</label>
+        <select name="" id="" class="form-select my-2" formControlName="luogo">
+          <option value=""></option>
+          <option value="{{c.id}}" *ngFor="let c of luoghi">{{c.luogo}} </option>
+        </select></div>
+          <div class="col-md-6"><label for="">Seleziona tema :</label>
+        <select name="" id="" class="form-select my-2" formControlName="temaList">
+          <option value=""></option>
+          <option value="{{c.id}}" *ngFor="let c of temi">{{c.thema}} </option>
+        </select></div>
+          <div class="col-md-6"><label for="">Seleziona tag :</label>
+        <select name="" id="" class="form-select my-2" formControlName="tagList">
+          <option value=""></option>
+          <option value="{{c.id}}" *ngFor="let c of tags">{{c.tag}} </option>
+        </select></div>
+        </div></div>
       <div class="col-md-12">
 <label for="">Testo :</label>
     <textarea
