@@ -6,17 +6,29 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { RouteGuard } from './core/route.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorsComponent } from './shared/errors/errors.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    HttpClientModule,
+    MatButtonModule
+
   ],
+  exports:[ErrorsComponent],
   providers: [RouteGuard],
   bootstrap: [AppComponent]
 })
