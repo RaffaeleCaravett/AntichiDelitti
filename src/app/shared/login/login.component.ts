@@ -17,12 +17,13 @@ constructor(private auth:AuthService,private dialog:MatDialog){}
 
 ngOnInit(): void {
   this.loginForm=new FormGroup({
-    email:new FormControl('',Validators.required),
+    email:new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]),
     password:new FormControl('',Validators.required)
   })
 }
 
 submit(){
+  console.log(this.loginForm.valid)
 if(this.loginForm.valid){
 this.auth.log(
   {
@@ -31,11 +32,19 @@ this.auth.log(
   }
 ).subscribe((data:any)=>{
   console.log(data)
+},(err:any)=>{
+  console.log(err)
+  const dialogRef = this.dialog.open(ErrorsComponent,{
+    data:err
+  })
+  dialogRef.afterClosed().subscribe((data:any)=>{
+    console.log(data)
+  })
 })
 }else{
   let err={
     error:{
-message:"Stai dimenticando di inserire qualcosa nel form"
+message:"Stai dimenticando di inserire qualcosa nel form."
     }
   }
 const dialogRef = this.dialog.open(ErrorsComponent,{
