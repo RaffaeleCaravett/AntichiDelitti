@@ -29,9 +29,10 @@ localStorage.setItem('user',JSON.stringify(data))
   this.auth.verifyRefreshToken(localStorage.getItem('refreshToken')!).subscribe((data:any)=>{
     if(data){
       this.auth.setRefreshToken(localStorage.getItem('refreshToken')!)
+   this.auth.setToken(data)
+   localStorage.setItem('accessToken',data.accessToken)
 this.guard.authenticateUser(true)
 this.router.navigate(['office'])
-localStorage.setItem('user',JSON.stringify(data))
     }
   },err=>{
 console.log(err)

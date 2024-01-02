@@ -69,6 +69,7 @@ if(this.addCategoria.valid){
     {category:this.addCategoria.controls['addCategoria'].value}
   ).subscribe((data:any)=>{
 this.getAll()
+this.addCategoria.reset()
   },err=>{
 this.openDialog()  })
 }else{
@@ -77,10 +78,12 @@ this.openDialog()  })
 }
 addThema(){
   if(this.addTema.valid){
+    console.log(this.addTema.controls['addTema'].value)
     this.argument.saveTema(
-      {thme:this.addTema.controls['addTema'].value}
+      {thema:this.addTema.controls['addTema'].value}
     ).subscribe((data:any)=>{
   this.getAll()
+  this.addTema.reset()
     },err=>{
   this.openDialog()  })
   }else{
@@ -93,6 +96,7 @@ addTags(){
       {tag:this.addCategoria.controls['addTag'].value}
     ).subscribe((data:any)=>{
   this.getAll()
+  this.addTag.reset()
     },err=>{
   this.openDialog()  })
   }else{
@@ -105,6 +109,7 @@ addPlace(){
       {luogo:this.addCategoria.controls['addluogo'].value}
     ).subscribe((data:any)=>{
   this.getAll()
+  this.addLuogo.reset()
     },err=>{
   this.openDialog()  })
   }else{

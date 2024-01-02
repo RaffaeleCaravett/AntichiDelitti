@@ -40,6 +40,7 @@ return this.http.post(environment.API_URL+this.categoria,body)
       }
 
   saveTema(body:any){
+    console.log(body)
     return this.http.post(environment.API_URL+this.tema,body)
       }
       deleteTema(id:number){
