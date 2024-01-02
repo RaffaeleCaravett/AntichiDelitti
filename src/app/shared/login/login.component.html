@@ -1,5 +1,16 @@
-<div class="container">
-  <div class="row">
+<div class="container py-5">
+  <div class="row text-center py-5">
     <h1>Login</h1>
+    <div class="col-md-12 py-5">
+<div class="w-50 p-5 border rounded shadow m-auto bg-light">
+<form [formGroup]="loginForm" (submit)="submit()">
+<label class="py-2 fs-2">Inserisci la tua email</label>
+<input type="text" class="form-control fs-2">
+<label class="py-2 fs-2">Inserisci la password</label>
+<input type="password" class="form-control fs-2">
+<button class="btn btn-primary my-2" type="submit">Login</button>
+</form>
+</div>
+    </div>
   </div>
 </div>
