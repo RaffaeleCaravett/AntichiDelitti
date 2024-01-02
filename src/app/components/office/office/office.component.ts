@@ -93,7 +93,7 @@ addThema(){
 addTags(){
   if(this.addTag.valid){
     this.argument.saveTag(
-      {tag:this.addCategoria.controls['addTag'].value}
+      {tag:this.addTag.controls['addTag'].value}
     ).subscribe((data:any)=>{
   this.getAll()
   this.addTag.reset()
@@ -106,7 +106,7 @@ addTags(){
 addPlace(){
   if(this.addLuogo.valid){
     this.argument.saveLuogo(
-      {luogo:this.addCategoria.controls['addluogo'].value}
+      {luogo:this.addLuogo.controls['addluogo'].value}
     ).subscribe((data:any)=>{
   this.getAll()
   this.addLuogo.reset()
