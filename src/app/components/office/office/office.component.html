@@ -57,6 +57,19 @@
       <button class="btn" type="btn" (click)="addPlace()">Aggiungi luogo</button>
       </form>
     </div>
+    <div class="col-md-12 p-5">
+      <form [formGroup]="addPersonaggio">
+        <div class="row">
+            <div class="col-md-4"><label for="" class="py-2">Nome personaggio:</label>
+              <input type="text" class="form-control" formControlName="name"></div>
+        <div class="col-md-4"> <label for="" class="py-2">Cognome personaggio:</label>
+              <input type="text" class="form-control" formControlName="surname"></div>
+        <div class="col-md-4"> <label for="" class="py-2">Alias personaggio:</label>
+              <input type="text" class="form-control" formControlName="alias"></div>
+        </div>
+  </form>
+  <button class="btn my-2" type="btn" (click)="addCharacter()"> Aggiungi personaggio</button>
+    </div>
   </div>
   <form [formGroup]="articoloForm" class="text-center py-5">
     <div class="row">
@@ -86,6 +99,11 @@
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of tags">{{c.tag}} </option>
         </select></div>
+        <div class="col-md-6"><label for="">Seleziona personaggio :</label>
+          <select name="" id="" class="form-select my-2" formControlName="personaggioList">
+            <option value=""></option>
+            <option value="{{c.id}}" *ngFor="let c of personaggi">{{c.alias}} </option>
+          </select></div>
         </div></div>
       <div class="col-md-12">
 <label for="">Testo :</label>
@@ -100,9 +118,12 @@
 <input type="file" class="d-none" formControlName="image" #image>
       </div>
       <div class="col-md-12 text-end">
-        <button class="btn btn-primary">Posta</button>
+        <button class="btn btn-warning m-1">Salva Bozza</button>
+        <button class="btn btn-primary m-1">Posta</button>
       </div>
-    </div>  </form>
+    </div>
+
+  </form>
 </div>
   </div>
 </div>

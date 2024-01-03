@@ -24,10 +24,12 @@ categorie:any[]=[]
 temi:any[]=[]
 tags:any[]=[]
 luoghi:any[]=[]
+personaggi:any[]=[]
 addCategoria!:FormGroup
 addTag!:FormGroup
 addTema!:FormGroup
 addLuogo!:FormGroup
+addPersonaggio!:FormGroup
 constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog){}
 
 ngOnInit(): void {
@@ -38,7 +40,7 @@ this.articoloForm=new FormGroup({
   luogo:new FormControl(''),
   tagList:new FormControl(''),
   testo:new FormControl('',Validators.required),
-  images:new FormControl(''),
+  image:new FormControl(''),
   personaggioList:new FormControl('')
 })
 this.addCategoria= new FormGroup({
@@ -53,7 +55,11 @@ this.addTag= new FormGroup({
     this.addLuogo= new FormGroup({
       addLuogo:new FormControl('',Validators.required)
       })
-
+this.addPersonaggio= new FormGroup({
+  name:new FormControl('',Validators.required),
+  surname:new FormControl('',Validators.required),
+  alias:new FormControl('',Validators.required)
+})
 this.getAll()
 }
 
@@ -106,10 +112,26 @@ addTags(){
 addPlace(){
   if(this.addLuogo.valid){
     this.argument.saveLuogo(
-      {luogo:this.addLuogo.controls['addluogo'].value}
+      {luogo:this.addLuogo.controls['addLuogo'].value}
     ).subscribe((data:any)=>{
   this.getAll()
   this.addLuogo.reset()
+    },err=>{
+  this.openDialog()  })
+  }else{
+    this.openDialog({})
+  }
+}
+addCharacter(){
+  console.log(this.addPersonaggio)
+  if(this.addPersonaggio.valid){
+    this.argument.savePersonaggio(
+      {name:this.addPersonaggio.controls['name'].value,
+      surname:this.addPersonaggio.controls['surname'].value,
+      alias:this.addPersonaggio.controls['alias'].value}
+    ).subscribe((data:any)=>{
+  this.getAll()
+  this.addPersonaggio.reset()
     },err=>{
   this.openDialog()  })
   }else{
@@ -135,6 +157,11 @@ getAll(){
   this.argument.getAllLuogo().subscribe((data:any)=>{
     if(data){
       this.luoghi=data
+    }
+  })
+  this.argument.getAllPersonaggio().subscribe((data:any)=>{
+    if(data){
+      this.personaggi=data
     }
   })
 }
