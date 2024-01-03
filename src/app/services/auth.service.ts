@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class AuthService {
 
   private login="/auth/login";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
   private _token: string | null = null;
   private _refreshToken: string | null = null;
   private verifyTkn = "/auth/"
@@ -38,5 +39,8 @@ verifyToken(token:string){
 }
 verifyRefreshToken(refreshToken:string){
   return this.http.get(environment.API_URL+this.verifyTkn+'refreshToken/'+refreshToken)
+}
+navigateHome(){
+  this.router.navigate(['/home'])
 }
 }

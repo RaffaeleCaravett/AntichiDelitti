@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { RouteGuard } from './core/route.guard';
 import { Router } from '@angular/router';
-import { JsonPipe } from '@angular/common';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
 constructor(private auth:AuthService,private guard : RouteGuard,private router:Router){}
 
  ngOnInit(): void {
-
+Aos.init()
 if(localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
 this.auth.verifyToken(localStorage.getItem('accessToken')!).subscribe((data:any)=>{
   if(data){

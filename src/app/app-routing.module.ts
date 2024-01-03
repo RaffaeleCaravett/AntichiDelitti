@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouteGuard } from './core/route.guard';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 const routes: Routes = [
   { path:'' , redirectTo:'/home', pathMatch: 'full' },
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'contattaci', loadChildren: () => import('../app/components/contattaci/contattaci.module').then(m => m.ContattaciModule) },
   { path: 'login', loadChildren: () => import('../app/shared/login/login.module').then(m => m.LoginModule) },
   { path: 'office', loadChildren: () => import('./components/office/office/office.module').then(m => m.OfficeModule), canActivate: [RouteGuard] },
-  { path:'**' , redirectTo:'/home', pathMatch: 'full' },
+  { path:'**' ,component:NotfoundComponent },
 
 ];
 

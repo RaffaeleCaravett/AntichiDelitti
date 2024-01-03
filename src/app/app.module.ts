@@ -12,13 +12,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthTokenInterceptor } from './core/auth.token.interceptor';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    ErrorsComponent
+    ErrorsComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { AuthTokenInterceptor } from './core/auth.token.interceptor';
 
   ],
   exports:[ErrorsComponent],
-  providers: [RouteGuard,
+  providers: [
+    RouteGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthTokenInterceptor,

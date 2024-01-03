@@ -11,6 +11,7 @@ private categoria='/categoria'
 private luogo ='/luogo'
 private tema = '/tema'
 private tag = '/tag'
+private personaggio = '/personaggio'
   constructor(private http:HttpClient) { }
 
   saveCategoria(body:any){
@@ -40,7 +41,6 @@ return this.http.post(environment.API_URL+this.categoria,body)
       }
 
   saveTema(body:any){
-    console.log(body)
     return this.http.post(environment.API_URL+this.tema,body)
       }
       deleteTema(id:number){
@@ -66,5 +66,17 @@ return this.http.post(environment.API_URL+this.categoria,body)
         return this.http.get(environment.API_URL+this.luogo)
       }
 
+      savePersonaggio(body:any){
+        return this.http.post(environment.API_URL+this.personaggio,body)
+          }
+          deletePersonaggio(id:number){
+            return this.http.delete(environment.API_URL+this.personaggio+'/'+id)
+          }
+          putPersonaggio(id:number,body:any){
+            return this.http.put(environment.API_URL+this.personaggio+'/'+id,body)
+          }
+          getAllPersonaggio(){
+            return this.http.get(environment.API_URL+this.personaggio)
+          }
 
 }

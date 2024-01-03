@@ -2,3 +2,10 @@ a{
   text-decoration: none;
   color:white;
 }
+a:hover{
+  color:green;
+  padding:10px;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  background:yellow
+}
