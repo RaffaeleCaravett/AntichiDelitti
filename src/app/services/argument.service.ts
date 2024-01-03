@@ -12,7 +12,8 @@ private luogo ='/luogo'
 private tema = '/tema'
 private tag = '/tag'
 private personaggio = '/personaggio'
-  constructor(private http:HttpClient) { }
+private articolo = '/articolo'
+constructor(private http:HttpClient) { }
 
   saveCategoria(body:any){
 return this.http.post(environment.API_URL+this.categoria,body)
@@ -78,5 +79,16 @@ return this.http.post(environment.API_URL+this.categoria,body)
           getAllPersonaggio(){
             return this.http.get(environment.API_URL+this.personaggio)
           }
-
+          saveArticolo(body:any){
+            return this.http.post(environment.API_URL+this.articolo,body)
+              }
+              deleteArticolo(id:number){
+                return this.http.delete(environment.API_URL+this.articolo+'/'+id)
+              }
+              putArticolo(id:number,body:any){
+                return this.http.put(environment.API_URL+this.articolo+'/'+id,body)
+              }
+              getAllArticolo(){
+                return this.http.get(environment.API_URL+this.articolo)
+              }
 }

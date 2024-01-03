@@ -28,7 +28,10 @@
   <button class="btn btn-light m-1 border" (click)="image.click()">Aggiungi media</button>
 </div>
 <div class="w-100 p-3 bg-light">
-  <div class="row p-5 border shadow rounded m-2">
+  <div class="row border shadow rounded m-2">
+    <div class="col-md-10">
+      <h2 class="text-center py-2">Aggiungi</h2>
+  <div class="row p-5 ">
     <div class="col-md-3">
       <form [formGroup]="addCategoria">
         <label for="">Aggiungi categoria :</label>
@@ -71,6 +74,29 @@
   <button class="btn my-2" type="btn" (click)="addCharacter()"> Aggiungi personaggio</button>
     </div>
   </div>
+    </div>
+    <div class="col-md-2">
+      <h2 class="py-2 text-center">
+    Modifica/Rimuovi
+      </h2>
+      <form [formGroup]="searchCategory">
+      <label for="" class="fs-5 fw-bold">Categoria</label>
+    <input type="text" formControlName="searchCategory" class="form-control"> <button class="btn btn-secondary m-1" style="font-size: 12px;" type="button" (click)="search('categoria')">cerca</button></form>
+      <form [formGroup]="searchTag">
+      <label for="" class="fs-5 fw-bold">Tag</label>
+    <input type="text" formControlName="searchTag" class="form-control"> <button class="btn btn-secondary m-1" style="font-size: 12px;" type="button" (click)="search('tag')">cerca</button></form>
+      <form [formGroup]="searchTema">
+      <label for="" class="fs-5 fw-bold"> Tema</label>
+    <input type="text" formControlName="searchTema" class="form-control"> <button class="btn btn-secondary m-1" style="font-size: 12px;" type="button" (click)="search('tema')">cerca</button></form>
+      <form [formGroup]="searchLuogo">
+      <label for="" class="fs-5 fw-bold">Luogo</label>
+    <input type="text" formControlName="searchLuogo" class="form-control"> <button class="btn btn-secondary m-1" style="font-size: 12px;" type="button" (click)="search('luogo')">cerca</button></form>
+      <form [formGroup]="searchPersonaggio">
+      <label for="" class="fs-5 fw-bold">Personaggio</label>
+    <input type="text" formControlName="searchPersonaggio" class="form-control"> <button class="btn btn-secondary m-1" style="font-size: 12px;" type="button" (click)="search('personaggio')">cerca</button></form>
+    </div>
+  </div>
+
   <form [formGroup]="articoloForm" class="text-center py-5">
     <div class="row">
       <div class="col-md-8">

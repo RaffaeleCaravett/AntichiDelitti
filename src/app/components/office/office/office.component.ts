@@ -30,6 +30,11 @@ addTag!:FormGroup
 addTema!:FormGroup
 addLuogo!:FormGroup
 addPersonaggio!:FormGroup
+searchCategory!:FormGroup
+searchTag!:FormGroup
+searchTema!:FormGroup
+searchLuogo!:FormGroup
+searchPersonaggio!:FormGroup
 constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog){}
 
 ngOnInit(): void {
@@ -60,6 +65,21 @@ this.addPersonaggio= new FormGroup({
   surname:new FormControl('',Validators.required),
   alias:new FormControl('',Validators.required)
 })
+this.searchCategory= new FormGroup({
+searchCategory:new FormControl('',Validators.required)
+  })
+  this.searchTag= new FormGroup({
+  searchTag:new FormControl('',Validators.required)
+    })
+    this.searchTema= new FormGroup({
+    searchTema:new FormControl('',Validators.required)
+      })
+      this.searchLuogo= new FormGroup({
+      searchLuogo:new FormControl('',Validators.required)
+        })
+  this.searchPersonaggio= new FormGroup({
+    searchAlias:new FormControl('',Validators.required)
+  })
 this.getAll()
 }
 
@@ -138,6 +158,8 @@ addCharacter(){
     this.openDialog({})
   }
 }
+
+
 getAll(){
   this.argument.getAllCategoria().subscribe((data:any)=>{
     if(data){
@@ -186,5 +208,19 @@ const dialogRef = this.dialog.open(ErrorsComponent,{
 dialogRef.afterClosed().subscribe((data:any)=>{
   console.log(data)
 })
+}
+search(parameter:string){
+  switch(parameter){
+    case 'categoria':
+      break;
+      case 'tag':
+break;
+case 'tema':
+  break;
+  case 'luogo':
+    break;
+    case 'personaggio':
+      break;
+  }
 }
 }
