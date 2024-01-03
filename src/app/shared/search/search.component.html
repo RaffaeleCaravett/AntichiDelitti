@@ -1,1 +1,15 @@
-<p>search works!</p>
+<div class="p-3">
+  <h2 mat-dialog-title class="fs-1">Modifica 🖋️ o Rimuovi ❌</h2>
+    <mat-dialog-content>
+<p class="fs-5" *ngFor="let c of categorieTrovate">{{c.category}} <button class="btn"(click)="modify(c)">🖋️</button><button class="btn"(click)="cancel(c)">❌</button></p>
+<p class="fs-5" *ngFor="let c of temiTrovati">{{c.thema}} <button class="btn"(click)="modify(c)">🖋️</button><button class="btn"(click)="cancel(c)">❌</button></p>
+<p class="fs-5" *ngFor="let c of tagsTrovati">{{c.tag}} <button class="btn"(click)="modify(c)">🖋️</button><button class="btn"(click)="cancel(c)">❌</button></p>
+<p class="fs-5" *ngFor="let c of luoghiTrovati">{{c.luogo}} <button class="btn">(click)="modify(c)"🖋️</button><button class="btn"(click)="cancel(c)">❌</button></p>
+<p class="fs-5" *ngFor="let c of personaggiTrovati">{{c.alias}} <button class="btn"(click)="modify(c)">🖋️</button><button class="btn"(click)="cancel(c)">❌</button></p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true">OK</button>
+    </mat-dialog-actions>
+
+</div>
+
