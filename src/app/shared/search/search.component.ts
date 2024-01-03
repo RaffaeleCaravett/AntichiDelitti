@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ArgumentService } from 'src/app/services/argument.service';
+import { HandleOperationOnItemsComponent } from '../handle-operation-on-items/handle-operation-on-items.component';
 
 @Component({
   selector: 'app-search',
@@ -9,7 +10,7 @@ import { ArgumentService } from 'src/app/services/argument.service';
 })
 export class SearchComponent implements OnInit{
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private argument:ArgumentService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private argument:ArgumentService,private dialog:MatDialog) { }
 categorieTrovate:any[]=[]
 temiTrovati:any[]=[]
 tagsTrovati:any[]=[]
@@ -62,7 +63,16 @@ switch(this.data[0]){
             break;
 }
   }
-  modify(item:string){
+  modify(item:string,parameter:string){
+const dialogRef= this.dialog.open(HandleOperationOnItemsComponent,{data:[item,parameter]})
+dialogRef.afterClosed().subscribe((data:any)=>{
+  this.ngOnInit()
+})
   }
-  cancel(item:string){}
+  cancel(item:string,parameter:string){
+const dialogRef= this.dialog.open(HandleOperationOnItemsComponent,{data:[item,parameter]})
+dialogRef.afterClosed().subscribe((data:any)=>{
+  this.ngOnInit()
+})
+  }
 }
