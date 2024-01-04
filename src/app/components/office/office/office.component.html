@@ -105,32 +105,52 @@
       </div>
       <div class="col-md-4">
         <div class="row">
-          <div class="col-md-6"><label for="">Seleziona categoria :</label>
-        <select name="" id="" class="form-select my-2" formControlName="categoriaList">
+          <div class="col-md-6"><label for="">Aggiungi categoria :</label>
+        <select name="" id="" class="form-select my-2" formControlName="categoriaList" #selectCategory (change)="addToSelectedCategories(selectCategory.value)">
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of categorie">{{c.category}} </option>
         </select></div>
-          <div class="col-md-6"><label for="">Seleziona luogo :</label>
-        <select name="" id="" class="form-select my-2" formControlName="luogo">
+          <div class="col-md-6"><label for="">Aggiungi luogo :</label>
+        <select name="" id="" class="form-select my-2" formControlName="luogo" #selectPlace (change)="addToSelectedPlaces(selectPlace.value)">
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of luoghi">{{c.luogo}} </option>
         </select></div>
-          <div class="col-md-6"><label for="">Seleziona tema :</label>
-        <select name="" id="" class="form-select my-2" formControlName="temaList">
+          <div class="col-md-6"><label for="">Aggiungi tema :</label>
+        <select name="" id="" class="form-select my-2" formControlName="temaList" #selectTema (change)="addToSelectedThemas(selectTema.value)">
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of temi">{{c.thema}} </option>
         </select></div>
-          <div class="col-md-6"><label for="">Seleziona tag :</label>
-        <select name="" id="" class="form-select my-2" formControlName="tagList">
+          <div class="col-md-6"><label for="">Aggiungi tag :</label>
+        <select name="" id="" class="form-select my-2" formControlName="tagList" #selectTag (change)="addToSelectedTags(selectTag.value)">
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of tags">{{c.tag}} </option>
         </select></div>
-        <div class="col-md-6"><label for="">Seleziona personaggio :</label>
-          <select name="" id="" class="form-select my-2" formControlName="personaggioList">
+        <div class="col-md-6"><label for="">Aggiungi personaggio :</label>
+          <select name="" id="" class="form-select my-2" formControlName="personaggioList" #selectCharacter (change)="addToSelectedCharacters(selectCharacter.value)">
             <option value=""></option>
             <option value="{{c.id}}" *ngFor="let c of personaggi">{{c.alias}} </option>
           </select></div>
-        </div></div>
+<div class="col-md-12">
+  <div class="row">
+     <div class="col-md-2">
+        <div *ngFor="let c of selectedCategories"><input type="checkbox" checked="true" (click)="removeItemFromSelectedCategories(c.id)"> <label for="">{{c.category}}</label></div>
+      </div>
+      <div class="col-md-2">
+        <div *ngFor="let c of selectedPlaces"><input type="checkbox" checked="true" (click)="removeItemFromSelectedPlaces(c.id)"> <label for="">{{c.luogo}}</label></div>
+      </div>
+      <div class="col-md-2">
+        <div *ngFor="let c of selectedTags"><input type="checkbox" checked="true" (click)="removeItemFromSelectedTags(c.id)"> <label for="">{{c.tag}}</label></div>
+      </div>
+      <div class="col-md-2">
+        <div *ngFor="let c of selectedThemas"><input type="checkbox" checked="true" (click)="removeItemFromSelectedThemas(c.id)"> <label for="">{{c.thema}}</label></div>
+      </div>
+      <div class="col-md-2">
+        <div *ngFor="let c of selectedCharacters"><input type="checkbox" checked="true" (click)="removeItemFromSelectedCharacters(c.id)"> <label for="">{{c.alias}}</label></div>
+      </div>
+  </div>
+</div>
+      </div>
+    </div>
       <div class="col-md-12">
 <label for="">Testo :</label>
     <textarea
@@ -144,8 +164,8 @@
 <input type="file" class="d-none" formControlName="image" #image>
       </div>
       <div class="col-md-12 text-end">
-        <button class="btn btn-warning m-1">Salva Bozza</button>
-        <button class="btn btn-primary m-1">Posta</button>
+        <button class="btn btn-warning m-1" (click)="salvaBozza()">Salva Bozza</button>
+        <button class="btn btn-primary m-1" (click)="posta()">Posta</button>
       </div>
     </div>
 

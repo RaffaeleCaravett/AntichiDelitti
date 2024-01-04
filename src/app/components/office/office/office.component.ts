@@ -36,6 +36,11 @@ searchTag!:FormGroup
 searchTema!:FormGroup
 searchLuogo!:FormGroup
 searchPersonaggio!:FormGroup
+selectedCategories:any[]=[]
+selectedPlaces:any[]=[]
+selectedThemas:any[]=[]
+selectedTags:any[]=[]
+selectedCharacters:any[]=[]
 constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog){}
 
 ngOnInit(): void {
@@ -234,9 +239,121 @@ search(parameter:string,value:string){
     let err ={ error:{message:'Non stai inserendo un valore'}}
     const dialogRef = this.dialog.open(ErrorsComponent,{data:err})
     dialogRef.afterClosed().subscribe((data:any)=>{
-
     })
   }
+}
 
+posta(){
+if(this.articoloForm.valid){
+  this.argument.saveArticolo(
+{
+titolo:this.articoloForm.controls['titolo'].value,
+testo:this.articoloForm.controls['testo'].value
+}
+  ).subscribe((data:any)=>{})
+}
+}
+salvaBozza(){
+
+}
+addToSelectedCategories(id:string){
+  let item:any
+  this.categorie.forEach(c=>{
+    if(c.id==Number(id)){
+      item=c
+    }
+  })
+  let bool=false
+  this.selectedCategories.forEach(c=>{
+    if(c.id==item.id){
+      bool=true
+    }
+  })
+if(bool==false){
+  this.selectedCategories.push(item)
+}
+}
+addToSelectedPlaces(id:string){
+  let item:any
+  this.luoghi.forEach(c=>{
+    if(c.id==Number(id)){
+      item=c
+    }
+  })
+  let bool=false
+  this.selectedPlaces.forEach(c=>{
+    if(c.id==item.id){
+      bool=true
+    }
+  })
+if(bool==false){
+  this.selectedPlaces.push(item)
+}
+}
+addToSelectedThemas(id:string){
+  let item:any
+  this.temi.forEach(c=>{
+    if(c.id==Number(id)){
+      item=c
+    }
+  })
+  let bool=false
+  this.selectedThemas.forEach(c=>{
+    if(c.id==item.id){
+      bool=true
+    }
+  })
+if(bool==false){
+  this.selectedThemas.push(item)
+}
+}
+addToSelectedTags(id:string){
+  let item:any
+  this.tags.forEach(c=>{
+    if(c.id==Number(id)){
+     item=c
+    }
+  })
+  let bool=false
+  this.selectedTags.forEach(c=>{
+    if(c.id==item.id){
+      bool=true
+    }
+  })
+if(bool==false){
+  this.selectedTags.push(item)
+}
+}
+addToSelectedCharacters(id:string){
+  let item:any
+  this.personaggi.forEach(c=>{
+    if(c.id==Number(id)){
+      item=c
+    }
+  })
+  let bool=false
+  this.selectedCharacters.forEach(c=>{
+    if(c.id==item.id){
+      bool=true
+    }
+  })
+if(bool==false){
+  this.selectedCharacters.push(item)
+}
+}
+removeItemFromSelectedCategories(id:number){
+this.selectedCategories=this.selectedCategories.filter(c=>c.id!=id)
+}
+removeItemFromSelectedPlaces(id:number){
+this.selectedPlaces=this.selectedPlaces.filter(c=>c.id!=id)
+}
+removeItemFromSelectedTags(id:number){
+this.selectedTags=this.selectedTags.filter(c=>c.id!=id)
+}
+removeItemFromSelectedThemas(id:number){
+this.selectedThemas=this.selectedThemas.filter(c=>c.id!=id)
+}
+removeItemFromSelectedCharacters(id:number){
+this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
 }
 }

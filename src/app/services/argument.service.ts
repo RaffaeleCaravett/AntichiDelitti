@@ -13,6 +13,7 @@ private tema = '/tema'
 private tag = '/tag'
 private personaggio = '/personaggio'
 private articolo = '/articolo'
+private bozza = '/bozza'
 constructor(private http:HttpClient) { }
 
   saveCategoria(body:any){
@@ -92,6 +93,18 @@ return this.http.post(environment.API_URL+this.categoria,body)
                 return this.http.get(environment.API_URL+this.articolo)
               }
 
+              saveBozza(body:any){
+                return this.http.post(environment.API_URL+this.bozza,body)
+                  }
+                  deleteBozza(id:number){
+                    return this.http.delete(environment.API_URL+this.bozza+'/'+id)
+                  }
+                  putBozza(id:number,body:any){
+                    return this.http.put(environment.API_URL+this.bozza+'/'+id,body)
+                  }
+                  getAllBozza(){
+                    return this.http.get(environment.API_URL+this.bozza)
+                  }
 searchCategoriaContains(categoria:string){
 return this.http.get(environment.API_URL+this.categoria+'/'+categoria)
 }
