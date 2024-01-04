@@ -110,8 +110,8 @@
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of categorie">{{c.category}} </option>
         </select></div>
-          <div class="col-md-6"><label for="">Aggiungi luogo :</label>
-        <select name="" id="" class="form-select my-2" formControlName="luogo" #selectPlace (change)="addToSelectedPlaces(selectPlace.value)">
+          <div class="col-md-6"><label for="">Seleziona luogo :</label>
+        <select name="" id="" class="form-select my-2" formControlName="luogo" >
           <option value=""></option>
           <option value="{{c.id}}" *ngFor="let c of luoghi">{{c.luogo}} </option>
         </select></div>
@@ -134,9 +134,6 @@
   <div class="row">
      <div class="col-md-2">
         <div *ngFor="let c of selectedCategories"><input type="checkbox" checked="true" (click)="removeItemFromSelectedCategories(c.id)"> <label for="">{{c.category}}</label></div>
-      </div>
-      <div class="col-md-2">
-        <div *ngFor="let c of selectedPlaces"><input type="checkbox" checked="true" (click)="removeItemFromSelectedPlaces(c.id)"> <label for="">{{c.luogo}}</label></div>
       </div>
       <div class="col-md-2">
         <div *ngFor="let c of selectedTags"><input type="checkbox" checked="true" (click)="removeItemFromSelectedTags(c.id)"> <label for="">{{c.tag}}</label></div>

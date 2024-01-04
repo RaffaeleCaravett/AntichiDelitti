@@ -37,7 +37,6 @@ searchTema!:FormGroup
 searchLuogo!:FormGroup
 searchPersonaggio!:FormGroup
 selectedCategories:any[]=[]
-selectedPlaces:any[]=[]
 selectedThemas:any[]=[]
 selectedTags:any[]=[]
 selectedCharacters:any[]=[]
@@ -245,12 +244,42 @@ search(parameter:string,value:string){
 
 posta(){
 if(this.articoloForm.valid){
+let categories :any[]=[];
+let temi:any[]=[];
+let tags:any[]=[];
+let personaggi:any[]=[]
+let immagini:any[]=[]
+for(let i of this.selectedCategories){
+categories.push(i.id)
+}
+  for(let i of this.selectedTags){
+    tags.push(i.id)
+    }
+    for(let i of this.selectedThemas){
+      temi.push(i.id)
+      }
+      for(let i of this.selectedCharacters){
+        personaggi.push(i.id)
+        }
+
   this.argument.saveArticolo(
 {
 titolo:this.articoloForm.controls['titolo'].value,
-testo:this.articoloForm.controls['testo'].value
+testo:this.articoloForm.controls['testo'].value,
+category_id:categories,
+theme_id:temi,
+tag_id:tags,
+luogo_id:this.articoloForm.controls['luogo'].value,
+imageList:immagini,
+personaggio_id:personaggi
 }
-  ).subscribe((data:any)=>{})
+  ).subscribe((data:any)=>{this.articoloForm.reset()
+  this.selectedCategories=[]
+this.selectedCharacters=[]
+this.selectedTags=[]
+this.selectedThemas=[]},err=>{
+    console.log(err)
+  });
 }
 }
 salvaBozza(){
@@ -271,23 +300,6 @@ addToSelectedCategories(id:string){
   })
 if(bool==false){
   this.selectedCategories.push(item)
-}
-}
-addToSelectedPlaces(id:string){
-  let item:any
-  this.luoghi.forEach(c=>{
-    if(c.id==Number(id)){
-      item=c
-    }
-  })
-  let bool=false
-  this.selectedPlaces.forEach(c=>{
-    if(c.id==item.id){
-      bool=true
-    }
-  })
-if(bool==false){
-  this.selectedPlaces.push(item)
 }
 }
 addToSelectedThemas(id:string){
@@ -343,9 +355,6 @@ if(bool==false){
 }
 removeItemFromSelectedCategories(id:number){
 this.selectedCategories=this.selectedCategories.filter(c=>c.id!=id)
-}
-removeItemFromSelectedPlaces(id:number){
-this.selectedPlaces=this.selectedPlaces.filter(c=>c.id!=id)
 }
 removeItemFromSelectedTags(id:number){
 this.selectedTags=this.selectedTags.filter(c=>c.id!=id)
