@@ -1,4 +1,3 @@
-import { AutoFocusTarget } from '@angular/cdk/dialog';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -43,17 +42,14 @@ selectedThemas:any[]=[]
 selectedTags:any[]=[]
 selectedCharacters:any[]=[]
 articles:any[]=[]
-displayedColumns: string[] = ['id', 'titolo', 'luogo', 'created_at'];
+displayedColumns: string[] = ['id', 'titolo', 'luogo', 'created_at','vedi'];
 dataSource = new MatTableDataSource<any>();
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 ngAfterViewInit() {
   this.dataSource.paginator = this.paginator;
-this.argument.getAllArticolo().subscribe((data:any)=>{
-  console.log(this.paginator,data)
-this.dataSource=data.content
-})
+this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')
 }
 
 constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog){}
@@ -384,7 +380,14 @@ this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
 
 
 
-updateArguments(){
+updateDatasource(page?:number,size?:number,orderBy?:string){
+
+  this.argument.getAllArticolo(this.paginator.pageIndex,this.paginator.pageSize,'id').subscribe((data:any)=>{
+  this.dataSource=data.content
+  this.paginator.length=data.content.length
+  })
+}
+vediStoria(articolo:any){
 
 }
 }

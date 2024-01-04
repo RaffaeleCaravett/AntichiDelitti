@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('../app/shared/login/login.module').then(m => m.LoginModule) },
   { path: 'office', loadChildren: () => import('./components/office/office/office.module').then(m => m.OfficeModule), canActivate: [RouteGuard] },
   { path:'**' ,component:NotfoundComponent },
-
 ];
 
 @NgModule({

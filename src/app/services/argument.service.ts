@@ -89,8 +89,9 @@ return this.http.post(environment.API_URL+this.categoria,body)
               putArticolo(id:number,body:any){
                 return this.http.put(environment.API_URL+this.articolo+'/'+id,body)
               }
-              getAllArticolo(){
-                return this.http.get(environment.API_URL+this.articolo)
+              getAllArticolo(page:number,size:number,orderBy:string){
+                const url = `${environment.API_URL}${this.articolo}?page=${page||0}&size=${size||5}&orderBy=${orderBy||'id'}`;
+                return this.http.get(url)
               }
 
               saveBozza(body:any){

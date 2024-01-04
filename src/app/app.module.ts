@@ -16,6 +16,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SearchComponent } from './shared/search/search.component';
 import { HandleOperationOnItemsComponent } from './shared/handle-operation-on-items/handle-operation-on-items.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViewArticoloComponent } from './shared/view-articolo/view-articolo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ErrorsComponent,
     NotfoundComponent,
     SearchComponent,
-    HandleOperationOnItemsComponent
+    HandleOperationOnItemsComponent,
+    ViewArticoloComponent
   ],
   imports: [
     BrowserModule,

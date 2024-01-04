@@ -169,7 +169,7 @@
   </form>
 </div>
   </div>
-  <div class="col-md-12 py-5 text-center" *ngIf="daFare=='vediStoria'">
+  <div class="col-md-12 py-5 text-center" [hidden]="daFare!='vediStoria'">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
 
@@ -192,6 +192,10 @@
           <th mat-header-cell *matHeaderCellDef> Creato in data </th>
           <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
         </ng-container>
+        <ng-container matColumnDef="vedi">
+          <th mat-header-cell *matHeaderCellDef> Vedi </th>
+          <td mat-cell *matCellDef="let element"><button class="btn fs-3" (click)="vediStoria(element)">➡️ </button> </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -199,7 +203,7 @@
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                      showFirstLastButtons
-                     (page)="updateArguments()"
+                     (page)="updateDatasource()"
                      >
       </mat-paginator>
     </div>
