@@ -7,12 +7,12 @@
 <input type="text" class="form-control" formControlName="item" placeholder="{{item.thema}}" [value]="item.thema" *ngIf="item&&item.thema">
 <input type="text" class="form-control" formControlName="item" placeholder="{{item.luogo}}" [value]="item.luogo" *ngIf="item&&item.luogo">
 <input type="text" class="form-control" formControlName="item" placeholder="{{item.personaggio}}" [value]="item.alias" *ngIf="item&&item.alias">
-<button class="btn m-2">Modifica</button><button class="btn btn-danger m-2">Cancella</button>
+<button class="btn m-2" (click)="modify()">Modifica 🖋️</button><button class="btn btn-danger m-2" (click)="cancel()">Cancella 🗑️</button>
 </form>
 
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="true">OK</button>
+      <button mat-button (click)="close()">Chiudi</button>
     </mat-dialog-actions>
 
 </div>

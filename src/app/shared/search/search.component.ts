@@ -69,10 +69,5 @@ dialogRef.afterClosed().subscribe((data:any)=>{
   this.ngOnInit()
 })
   }
-  cancel(item:string,parameter:string){
-const dialogRef= this.dialog.open(HandleOperationOnItemsComponent,{data:[item,parameter]})
-dialogRef.afterClosed().subscribe((data:any)=>{
-  this.ngOnInit()
-})
-  }
+
 }
