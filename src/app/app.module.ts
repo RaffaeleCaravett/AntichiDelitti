@@ -13,6 +13,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthTokenInterceptor } from './core/auth.token.interceptor';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { SearchComponent } from './shared/search/search.component';
+import { HandleOperationOnItemsComponent } from './shared/handle-operation-on-items/handle-operation-on-items.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     NavbarComponent,
     FooterComponent,
     ErrorsComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    SearchComponent,
+    HandleOperationOnItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     BrowserAnimationsModule,
     MatDialogModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
 
   ],
   exports:[ErrorsComponent],

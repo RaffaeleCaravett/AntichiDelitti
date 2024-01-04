@@ -1,1 +1,19 @@
-<p>handle-operation-on-items works!</p>
+<div class="p-3">
+  <h2 mat-dialog-title class="fs-1">Modifica o elimina </h2>
+    <mat-dialog-content>
+<form [formGroup]="makeAThing">
+<input type="text" class="form-control" formControlName="item" placeholder="{{item.category}}" [value]="item.category" *ngIf="item&&item.category">
+<input type="text" class="form-control" formControlName="item" placeholder="{{item.tag}}" [value]="item.tag" *ngIf="item&&item.tag">
+<input type="text" class="form-control" formControlName="item" placeholder="{{item.thema}}" [value]="item.thema" *ngIf="item&&item.thema">
+<input type="text" class="form-control" formControlName="item" placeholder="{{item.luogo}}" [value]="item.luogo" *ngIf="item&&item.luogo">
+<input type="text" class="form-control" formControlName="item" placeholder="{{item.personaggio}}" [value]="item.alias" *ngIf="item&&item.alias">
+<button class="btn m-2">Modifica</button><button class="btn btn-danger m-2">Cancella</button>
+</form>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true">OK</button>
+    </mat-dialog-actions>
+
+</div>
+

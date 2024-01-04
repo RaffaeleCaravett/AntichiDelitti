@@ -6,6 +6,7 @@ import { RouteGuard } from 'src/app/core/route.guard';
 import { ArgumentService } from 'src/app/services/argument.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorsComponent } from 'src/app/shared/errors/errors.component';
+import { SearchComponent } from 'src/app/shared/search/search.component';
 
 @Component({
   selector: 'app-office',
@@ -97,10 +98,14 @@ if(this.addCategoria.valid){
 this.getAll()
 this.addCategoria.reset()
   },err=>{
-this.openDialog()  })
+this.openDialog(err)  })
 }else{
-  this.openDialog({})
-}
+  let err={
+    error:{
+message:"Stai dimenticando di inserire il valore"
+    }
+  }
+  this.openDialog(err)}
 }
 addThema(){
   if(this.addTema.valid){
@@ -111,10 +116,14 @@ addThema(){
   this.getAll()
   this.addTema.reset()
     },err=>{
-  this.openDialog()  })
+  this.openDialog(err)  })
   }else{
-    this.openDialog({})
-  }
+    let err={
+      error:{
+  message:"Stai dimenticando di inserire il valore"
+      }
+    }
+    this.openDialog(err)  }
 }
 addTags(){
   if(this.addTag.valid){
@@ -124,10 +133,14 @@ addTags(){
   this.getAll()
   this.addTag.reset()
     },err=>{
-  this.openDialog()  })
+  this.openDialog(err)  })
   }else{
-    this.openDialog({})
-  }
+    let err={
+      error:{
+  message:"Stai dimenticando di inserire il valore"
+      }
+    }
+    this.openDialog(err)  }
 }
 addPlace(){
   if(this.addLuogo.valid){
@@ -137,9 +150,14 @@ addPlace(){
   this.getAll()
   this.addLuogo.reset()
     },err=>{
-  this.openDialog()  })
+  this.openDialog(err)  })
   }else{
-    this.openDialog({})
+    let err={
+      error:{
+  message:"Stai dimenticando di inserire il valore"
+      }
+    }
+    this.openDialog(err)
   }
 }
 addCharacter(){
@@ -153,9 +171,14 @@ addCharacter(){
   this.getAll()
   this.addPersonaggio.reset()
     },err=>{
-  this.openDialog()  })
+  this.openDialog(err)  })
   }else{
-    this.openDialog({})
+   let err={
+      error:{
+  message:"Stai dimenticando di inserire il valore"
+      }
+    }
+    this.openDialog(err)
   }
 }
 
@@ -188,39 +211,32 @@ getAll(){
   })
 }
 openDialog(error?:any){
-  let err={}
-  if(!error){
-  err={
-    error:{
-message:"Qualcosa è andato storto nel salvataggio"
-    }
-  }
-}else{
-  err={
-    error:{
-message:"Stai dimenticando di inserire il valore"
-    }
-  }
-}
+
 const dialogRef = this.dialog.open(ErrorsComponent,{
-  data:err
+  data:error
 })
 dialogRef.afterClosed().subscribe((data:any)=>{
   console.log(data)
 })
 }
-search(parameter:string){
-  switch(parameter){
-    case 'categoria':
-      break;
-      case 'tag':
-break;
-case 'tema':
-  break;
-  case 'luogo':
-    break;
-    case 'personaggio':
-      break;
+search(parameter:string,value:string){
+  if(value!=''){
+    const dialogRef=this.dialog.open(SearchComponent,{
+  data:[parameter,value]
+ })
+ dialogRef.afterClosed().subscribe((data:any)=>{
+  this.searchCategory.reset()
+  this.searchLuogo.reset()
+  this.searchPersonaggio.reset()
+  this.searchTag.reset()
+  this.searchTema.reset() })
+  }else{
+    let err ={ error:{message:'Non stai inserendo un valore'}}
+    const dialogRef = this.dialog.open(ErrorsComponent,{data:err})
+    dialogRef.afterClosed().subscribe((data:any)=>{
+
+    })
   }
+
 }
 }

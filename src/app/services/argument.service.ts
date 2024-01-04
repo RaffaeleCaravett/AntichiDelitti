@@ -91,4 +91,37 @@ return this.http.post(environment.API_URL+this.categoria,body)
               getAllArticolo(){
                 return this.http.get(environment.API_URL+this.articolo)
               }
+
+searchCategoriaContains(categoria:string){
+return this.http.get(environment.API_URL+this.categoria+'/'+categoria)
+}
+searchCategoria(categoria:string){
+return this.http.get(environment.API_URL+this.categoria+'/'+categoria)
+}
+searchTagContains(tag:string){
+return this.http.get(environment.API_URL+this.tag+'/'+tag)
+}
+searchTag(tag:string){
+return this.http.get(environment.API_URL+this.tag+'/'+tag)
+}
+searchTemaContains(tema:string){
+return this.http.get(environment.API_URL+this.tema+'/'+tema)
+}
+searchTema(tema:string){
+return this.http.get(environment.API_URL+this.tema+'/'+tema)
+}
+searchLuogoContains(luogo:string){
+return this.http.get(environment.API_URL+this.luogo+'/'+luogo)
+}
+searchLuogo(luogo:string){
+return this.http.get(environment.API_URL+this.luogo+'/'+luogo)
+}
+searchPersonaggioContains(alias:string){
+return this.http.get(environment.API_URL+this.personaggio+'/'+alias)
+}
+searchPersonaggio(alias:string){
+return this.http.get(environment.API_URL+this.personaggio+'/'+alias)
+}
+
+
 }
