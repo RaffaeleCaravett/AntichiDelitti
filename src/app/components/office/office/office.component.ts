@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { AutoFocusTarget } from '@angular/cdk/dialog';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { RouteGuard } from 'src/app/core/route.guard';
 import { ArgumentService } from 'src/app/services/argument.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { ErrorsComponent } from 'src/app/shared/errors/errors.component';
 import { SearchComponent } from 'src/app/shared/search/search.component';
 
@@ -13,7 +15,7 @@ import { SearchComponent } from 'src/app/shared/search/search.component';
   templateUrl: './office.component.html',
   styleUrls: ['./office.component.scss']
 })
-export class OfficeComponent implements OnInit{
+export class OfficeComponent implements OnInit, AfterViewInit{
 
 daFare:string='aggiungiStoria';
 fontSizee:string='fs-1'
@@ -40,6 +42,20 @@ selectedCategories:any[]=[]
 selectedThemas:any[]=[]
 selectedTags:any[]=[]
 selectedCharacters:any[]=[]
+articles:any[]=[]
+displayedColumns: string[] = ['id', 'titolo', 'luogo', 'created_at'];
+dataSource = new MatTableDataSource<any>();
+
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+
+ngAfterViewInit() {
+  this.dataSource.paginator = this.paginator;
+this.argument.getAllArticolo().subscribe((data:any)=>{
+  console.log(this.paginator,data)
+this.dataSource=data.content
+})
+}
+
 constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog){}
 
 ngOnInit(): void {
@@ -86,6 +102,7 @@ searchCategory:new FormControl('',Validators.required)
     searchAlias:new FormControl('',Validators.required)
   })
 this.getAll()
+
 }
 
 logout(){
@@ -185,7 +202,6 @@ addCharacter(){
     this.openDialog(err)
   }
 }
-
 
 getAll(){
   this.argument.getAllCategoria().subscribe((data:any)=>{
@@ -364,5 +380,11 @@ this.selectedThemas=this.selectedThemas.filter(c=>c.id!=id)
 }
 removeItemFromSelectedCharacters(id:number){
 this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
+}
+
+
+
+updateArguments(){
+
 }
 }
