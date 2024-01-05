@@ -18,6 +18,8 @@ export class ViewArticoloComponent implements OnInit{
 tags:any[]=[]
 luoghi:any[]=[]
 personaggi:any[]=[]
+showModified:boolean=false
+showError:boolean=false
   articoloForm!:FormGroup
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private articoloService:ArgumentService) { }
 
@@ -126,5 +128,42 @@ this.articoloForm.updateValueAndValidity()
   removeItemFromSelectedCharacters(id:number){
   this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
   }
-modify(){}
+modify(){
+  if(this.articoloForm.valid){
+    let categories :any[]=[];
+    let temi:any[]=[];
+    let tags:any[]=[];
+    let personaggi:any[]=[]
+    let immagini:any[]=[]
+    for(let i of this.selectedCategories){
+    categories.push(i.id)
+    }
+      for(let i of this.selectedTags){
+        tags.push(i.id)
+        }
+        for(let i of this.selectedThemas){
+          temi.push(i.id)
+          }
+          for(let i of this.selectedCharacters){
+            personaggi.push(i.id)
+            }
+
+      this.articoloService.putArticolo(this.data[0].id,
+    {
+    titolo:this.articoloForm.controls['titolo'].value,
+    testo:this.articoloForm.controls['testo'].value,
+    category_id:categories,
+    theme_id:temi,
+    tag_id:tags,
+    luogo_id:this.articoloForm.controls['luogo'].value,
+    imageList:immagini,
+    personaggio_id:personaggi
+    }
+      ).subscribe((data:any)=>{
+        this.showModified=true
+    },err=>{
+      this.showError=true
+      });
+    }
+  }
 }
