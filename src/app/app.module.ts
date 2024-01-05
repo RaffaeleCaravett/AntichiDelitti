@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewArticoloComponent } from './shared/view-articolo/view-articolo.component';
 import { ToastrModule, provideToastr } from 'ngx-toastr';
 import { ViewBozzaComponent } from './shared/view-bozza/view-bozza.component';
+import { ViewArticleComponent } from './shared/view-article/view-article.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ViewBozzaComponent } from './shared/view-bozza/view-bozza.component';
     SearchComponent,
     HandleOperationOnItemsComponent,
     ViewArticoloComponent,
-    ViewBozzaComponent
+    ViewBozzaComponent,
+    ViewArticleComponent
   ],
   imports: [
     BrowserModule,
