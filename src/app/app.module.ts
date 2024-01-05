@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { RouteGuard } from './core/route.guard';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { ErrorsComponent } from './shared/errors/errors.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { SearchComponent } from './shared/search/search.component';
 import { HandleOperationOnItemsComponent } from './shared/handle-operation-on-items/handle-operation-on-items.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewArticoloComponent } from './shared/view-articolo/view-articolo.component';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
 import { ViewBozzaComponent } from './shared/view-bozza/view-bozza.component';
 
 @NgModule({
@@ -54,7 +54,9 @@ import { ViewBozzaComponent } from './shared/view-bozza/view-bozza.component';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthTokenInterceptor,
     multi: true,
-  }],
+  },
+  provideAnimations(),
+  provideToastr(), ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
