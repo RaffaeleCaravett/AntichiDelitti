@@ -5,11 +5,12 @@
         <div class="row">
           <div class="col-md-8">
             <label for="">Titolo :</label>
-        <input type="text" formControlName="titolo" class="form-control w-100 m-auto my-2 fs-1">
+        <input type="text" formControlName="titolo" class="form-control w-100 m-auto my-2 fs-1" [disabled]="true">
           </div>
           <div class="col-md-12">
     <label for="">Testo :</label>
         <textarea
+        [disabled]="true"
         formControlName="testo"
         class="form-control my-2"
       name=""
