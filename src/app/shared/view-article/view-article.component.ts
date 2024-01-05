@@ -19,6 +19,7 @@ export class ViewArticleComponent implements OnInit{
       titolo:new FormControl(this.data.titolo,Validators.required),
       testo:new FormControl(this.data.testo,Validators.required),
     })
+    this.articoloForm.disable()
   }
 
 }

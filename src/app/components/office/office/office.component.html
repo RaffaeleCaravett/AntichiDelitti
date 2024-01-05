@@ -247,5 +247,21 @@
       </mat-paginator>
     </div>
   </div>
+  <div class="col-md-12 py-5 text-center" [hidden]="daFare!='statistiche'">
+<div class="row">
+  <div class="col-md-4">
+    <h2>Numero articoli totale :</h2>
+    <p class="fs-4">{{totalArticles}}</p>
+  </div>
+  <div class="col-md-4">
+    <h2>Numero bozze salvate :</h2>
+    <p class="fs-4">{{totalBozzas}}</p>
+  </div>
+  <div class="col-md-4">
+    <h2>Totale visite :</h2>
+    <p class="fs-4">{{visits}}</p>
+  </div>
+</div>
+  </div>
 </div>
 </div>

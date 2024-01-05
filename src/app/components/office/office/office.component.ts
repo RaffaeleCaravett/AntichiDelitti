@@ -12,6 +12,7 @@ import { SearchComponent } from 'src/app/shared/search/search.component';
 import { ViewArticoloComponent } from 'src/app/shared/view-articolo/view-articolo.component';
 import { forwardRef } from '@angular/core';
 import { ViewBozzaComponent } from 'src/app/shared/view-bozza/view-bozza.component';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-office',
@@ -49,7 +50,9 @@ articles:any[]=[]
 displayedColumns: string[] = ['id', 'titolo', 'luogo', 'created_at','vedi'];
 dataSource = new MatTableDataSource<any>();
 dataSource1 = new MatTableDataSource<any>();
-
+totalArticles:number=0;
+totalBozzas:number=0;
+visits:number=0
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 @ViewChild('paginator1') paginator1!: MatPaginator;
 
@@ -58,10 +61,11 @@ ngAfterViewInit() {
   this.dataSource1.paginator = this.paginator1;
 this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')
 this.updateDatasource1(this.paginator.pageIndex,this.paginator.pageSize,'id')
-
+this.homeService.getAllVisit().subscribe((data:any)=>{this.visits=data.length})
 }
 
-constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog,@Inject(forwardRef(() => ToastrService)) private toastr: ToastrService){}
+constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,
+  private homeService:HomeService,private dialog:MatDialog,@Inject(forwardRef(() => ToastrService)) private toastr: ToastrService){}
 
 ngOnInit(): void {
 this.articoloForm=new FormGroup({
@@ -421,6 +425,7 @@ this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
 updateDatasource(page?:number,size?:number,orderBy?:string){
 
   this.argument.getAllArticolo(page||this.paginator.pageIndex,size||this.paginator.pageSize,orderBy||'id').subscribe((data:any)=>{
+    this.totalArticles=data.totalElements
   this.dataSource=data.content
   this.paginator.length=data.content.length
   })
@@ -428,6 +433,7 @@ updateDatasource(page?:number,size?:number,orderBy?:string){
 updateDatasource1(page?:number,size?:number,orderBy?:string){
 
   this.argument.getAllBozza(page||this.paginator.pageIndex,size||this.paginator.pageSize,orderBy||'id').subscribe((data:any)=>{
+    this.totalBozzas=data.totalElements
   this.dataSource1=data.content
   this.paginator1.length=data.content.length
   })
