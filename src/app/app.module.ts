@@ -18,6 +18,7 @@ import { HandleOperationOnItemsComponent } from './shared/handle-operation-on-it
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewArticoloComponent } from './shared/view-articolo/view-articolo.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ViewBozzaComponent } from './shared/view-bozza/view-bozza.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
     NotfoundComponent,
     SearchComponent,
     HandleOperationOnItemsComponent,
-    ViewArticoloComponent
+    ViewArticoloComponent,
+    ViewBozzaComponent
   ],
   imports: [
     BrowserModule,

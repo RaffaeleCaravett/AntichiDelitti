@@ -11,6 +11,7 @@ import { ErrorsComponent } from 'src/app/shared/errors/errors.component';
 import { SearchComponent } from 'src/app/shared/search/search.component';
 import { ViewArticoloComponent } from 'src/app/shared/view-articolo/view-articolo.component';
 import { forwardRef } from '@angular/core';
+import { ViewBozzaComponent } from 'src/app/shared/view-bozza/view-bozza.component';
 
 @Component({
   selector: 'app-office',
@@ -47,12 +48,17 @@ selectedCharacters:any[]=[]
 articles:any[]=[]
 displayedColumns: string[] = ['id', 'titolo', 'luogo', 'created_at','vedi'];
 dataSource = new MatTableDataSource<any>();
+dataSource1 = new MatTableDataSource<any>();
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild('paginator1') paginator1!: MatPaginator;
 
 ngAfterViewInit() {
   this.dataSource.paginator = this.paginator;
+  this.dataSource1.paginator = this.paginator1;
 this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')
+this.updateDatasource1(this.paginator.pageIndex,this.paginator.pageSize,'id')
+
 }
 
 constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog,@Inject(forwardRef(() => ToastrService)) private toastr: ToastrService){}
@@ -181,7 +187,6 @@ addPlace(){
   }
 }
 addCharacter(){
-  console.log(this.addPersonaggio)
   if(this.addPersonaggio.valid){
     this.argument.savePersonaggio(
       {name:this.addPersonaggio.controls['name'].value,
@@ -420,8 +425,19 @@ updateDatasource(page?:number,size?:number,orderBy?:string){
   this.paginator.length=data.content.length
   })
 }
-vediStoria(articolo:any){
+updateDatasource1(page?:number,size?:number,orderBy?:string){
+
+  this.argument.getAllBozza(page||this.paginator.pageIndex,size||this.paginator.pageSize,orderBy||'id').subscribe((data:any)=>{
+  this.dataSource1=data.content
+  this.paginator1.length=data.content.length
+  })
+}
+vediStoria(articolo:any,param:string){
+  if(param=='articolo'){
 const dialogRef = this.dialog.open(ViewArticoloComponent,{data:[articolo,{categorie:this.categorie,luoghi:this.luoghi,tags:this.tags,temi:this.temi,personaggi:this.personaggi}]})
 dialogRef.afterClosed().subscribe((data:any)=>{this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')})
-}
+  }else{
+    const dialogRef = this.dialog.open(ViewBozzaComponent,{data:[articolo,{categorie:this.categorie,luoghi:this.luoghi,tags:this.tags,temi:this.temi,personaggi:this.personaggi}]})
+    dialogRef.afterClosed().subscribe((data:any)=>{this.updateDatasource1(this.paginator.pageIndex,this.paginator.pageSize,'id')})
+  }}
 }

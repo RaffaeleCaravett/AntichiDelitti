@@ -103,7 +103,8 @@ return this.http.post(environment.API_URL+this.categoria,body)
                   putBozza(id:number,body:any){
                     return this.http.put(environment.API_URL+this.bozza+'/'+id,body)
                   }
-                  getAllBozza(){
+                  getAllBozza(page:number,size:number,orderBy:string){
+                    const url = `${environment.API_URL}${this.bozza}?page=${page||0}&size=${size||5}&orderBy=${orderBy||'id'}`;
                     return this.http.get(environment.API_URL+this.bozza)
                   }
 searchCategoriaContains(categoria:string){
