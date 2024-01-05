@@ -6,6 +6,7 @@ import { OfficeComponent } from './office.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import {MatTableModule} from '@angular/material/table';
     OfficeRoutingModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+
+
   ]
 })
 export class OfficeModule { }

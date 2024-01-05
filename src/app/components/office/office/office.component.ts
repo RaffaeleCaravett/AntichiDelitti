@@ -1,14 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { RouteGuard } from 'src/app/core/route.guard';
 import { ArgumentService } from 'src/app/services/argument.service';
 import { ErrorsComponent } from 'src/app/shared/errors/errors.component';
 import { SearchComponent } from 'src/app/shared/search/search.component';
 import { ViewArticoloComponent } from 'src/app/shared/view-articolo/view-articolo.component';
+import { forwardRef } from '@angular/core';
 
 @Component({
   selector: 'app-office',
@@ -53,7 +55,7 @@ ngAfterViewInit() {
 this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')
 }
 
-constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog){}
+constructor(private argument:ArgumentService,private auth:RouteGuard,private router:Router,private dialog:MatDialog,@Inject(forwardRef(() => ToastrService)) private toastr: ToastrService){}
 
 ngOnInit(): void {
 this.articoloForm=new FormGroup({
@@ -296,7 +298,37 @@ this.selectedThemas=[]},err=>{
 }
 }
 salvaBozza(){
+  let categories :any[]=[];
+let temi:any[]=[];
+let tags:any[]=[];
+let personaggi:any[]=[]
+let immagini:any[]=[]
+for(let i of this.selectedCategories){
+categories.push(i.id)
+}
+  for(let i of this.selectedTags){
+    tags.push(i.id)
+    }
+    for(let i of this.selectedThemas){
+      temi.push(i.id)
+      }
+      for(let i of this.selectedCharacters){
+        personaggi.push(i.id)
+        }
 
+this.argument.saveBozza({
+  titolo:this.articoloForm.controls['titolo'].value,
+  testo:this.articoloForm.controls['testo'].value,
+  category_id:categories,
+  theme_id:temi,
+  tag_id:tags,
+  luogo_id:this.articoloForm.controls['luogo'].value,
+  imageList:immagini,
+  personaggio_id:personaggi
+  }).subscribe((data:any)=>{
+    this.toastr.success("Bozza salvata con successo");
+this.articoloForm.reset()
+})
 }
 addToSelectedCategories(id:string){
   let item:any

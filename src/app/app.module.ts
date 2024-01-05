@@ -17,6 +17,7 @@ import { SearchComponent } from './shared/search/search.component';
 import { HandleOperationOnItemsComponent } from './shared/handle-operation-on-items/handle-operation-on-items.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewArticoloComponent } from './shared/view-articolo/view-articolo.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,12 @@ import { ViewArticoloComponent } from './shared/view-articolo/view-articolo.comp
     MatDialogModule,
     HttpClientModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })
 
   ],
   exports:[ErrorsComponent],
