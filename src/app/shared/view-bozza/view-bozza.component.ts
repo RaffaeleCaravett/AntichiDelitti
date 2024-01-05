@@ -1,14 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ArgumentService } from 'src/app/services/argument.service';
 
 @Component({
-  selector: 'app-view-articolo',
-  templateUrl: './view-articolo.component.html',
-  styleUrls: ['./view-articolo.component.scss']
+  selector: 'app-view-bozza',
+  templateUrl: './view-bozza.component.html',
+  styleUrls: ['./view-bozza.component.scss']
 })
-export class ViewArticoloComponent implements OnInit{
+export class ViewBozzaComponent implements OnInit{
   selectedCategories:any[]=[]
   selectedThemas:any[]=[]
   selectedTags:any[]=[]
@@ -129,7 +129,6 @@ this.articoloForm.updateValueAndValidity()
   this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
   }
 modify(){
-  if(this.articoloForm.valid){
     let categories :any[]=[];
     let temi:any[]=[];
     let tags:any[]=[];
@@ -148,7 +147,7 @@ modify(){
             personaggi.push(i.id)
             }
 
-      this.articoloService.putArticolo(this.data[0].id,
+      this.articoloService.putBozza(this.data[0].id,
     {
     titolo:this.articoloForm.controls['titolo'].value,
     testo:this.articoloForm.controls['testo'].value,
@@ -164,6 +163,5 @@ modify(){
     },err=>{
       this.showError=true
       });
-    }
   }
 }
