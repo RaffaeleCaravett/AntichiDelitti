@@ -1,1 +1,78 @@
-<p>view-articolo works!</p>
+<div class="p-3">
+  <h2 mat-dialog-title class="fs-1">{{data.id}} - {{data.titolo}}</h2>
+    <mat-dialog-content>
+      <form [formGroup]="articoloForm" class="text-center py-5">
+        <div class="row">
+          <div class="col-md-8">
+            <label for="">Titolo :</label>
+        <input type="text" formControlName="titolo" class="form-control w-50 m-auto my-2 fs-1">
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6"><label for="">Aggiungi categoria :</label>
+            <select name="" id="" class="form-select my-2" formControlName="categoriaList" #selectCategory (change)="addToSelectedCategories(selectCategory.value)">
+              <option value=""></option>
+              <option value="{{c.id}}" *ngFor="let c of categorie">{{c.category}} </option>
+            </select></div>
+              <div class="col-md-6"><label for="">Seleziona luogo :</label>
+            <select name="" id="" class="form-select my-2" formControlName="luogo" >
+              <option value=""></option>
+              <option value="{{c.id}}" *ngFor="let c of luoghi">{{c.luogo}} </option>
+            </select></div>
+              <div class="col-md-6"><label for="">Aggiungi tema :</label>
+            <select name="" id="" class="form-select my-2" formControlName="temaList" #selectTema (change)="addToSelectedThemas(selectTema.value)">
+              <option value=""></option>
+              <option value="{{c.id}}" *ngFor="let c of temi">{{c.thema}} </option>
+            </select></div>
+              <div class="col-md-6"><label for="">Aggiungi tag :</label>
+            <select name="" id="" class="form-select my-2" formControlName="tagList" #selectTag (change)="addToSelectedTags(selectTag.value)">
+              <option value=""></option>
+              <option value="{{c.id}}" *ngFor="let c of tags">{{c.tag}} </option>
+            </select></div>
+            <div class="col-md-6"><label for="">Aggiungi personaggio :</label>
+              <select name="" id="" class="form-select my-2" formControlName="personaggioList" #selectCharacter (change)="addToSelectedCharacters(selectCharacter.value)">
+                <option value=""></option>
+                <option value="{{c.id}}" *ngFor="let c of personaggi">{{c.alias}} </option>
+              </select></div>
+    <div class="col-md-12">
+      <div class="row">
+         <div class="col-md-2">
+            <div *ngFor="let c of selectedCategories"><input type="checkbox" checked="true" (click)="removeItemFromSelectedCategories(c.id)"> <label for="">{{c.category}}</label></div>
+          </div>
+          <div class="col-md-2">
+            <div *ngFor="let c of selectedTags"><input type="checkbox" checked="true" (click)="removeItemFromSelectedTags(c.id)"> <label for="">{{c.tag}}</label></div>
+          </div>
+          <div class="col-md-2">
+            <div *ngFor="let c of selectedThemas"><input type="checkbox" checked="true" (click)="removeItemFromSelectedThemas(c.id)"> <label for="">{{c.thema}}</label></div>
+          </div>
+          <div class="col-md-2">
+            <div *ngFor="let c of selectedCharacters"><input type="checkbox" checked="true" (click)="removeItemFromSelectedCharacters(c.id)"> <label for="">{{c.alias}}</label></div>
+          </div>
+      </div>
+    </div>
+          </div>
+        </div>
+          <div class="col-md-12">
+    <label for="">Testo :</label>
+        <textarea
+        formControlName="testo"
+        class="form-control my-2"
+      name=""
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea>
+    <input type="file" class="d-none" formControlName="image" #image>
+          </div>
+          <div class="col-md-12 text-end">
+            <button class="btn btn-primary m-1" (click)="modify()">Modifica</button>
+          </div>
+        </div>
+
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true">OK</button>
+    </mat-dialog-actions>
+</div>
+

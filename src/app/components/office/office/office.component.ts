@@ -8,6 +8,7 @@ import { RouteGuard } from 'src/app/core/route.guard';
 import { ArgumentService } from 'src/app/services/argument.service';
 import { ErrorsComponent } from 'src/app/shared/errors/errors.component';
 import { SearchComponent } from 'src/app/shared/search/search.component';
+import { ViewArticoloComponent } from 'src/app/shared/view-articolo/view-articolo.component';
 
 @Component({
   selector: 'app-office',
@@ -382,12 +383,13 @@ this.selectedCharacters=this.selectedCharacters.filter(c=>c.id!=id)
 
 updateDatasource(page?:number,size?:number,orderBy?:string){
 
-  this.argument.getAllArticolo(this.paginator.pageIndex,this.paginator.pageSize,'id').subscribe((data:any)=>{
+  this.argument.getAllArticolo(page||this.paginator.pageIndex,size||this.paginator.pageSize,orderBy||'id').subscribe((data:any)=>{
   this.dataSource=data.content
   this.paginator.length=data.content.length
   })
 }
 vediStoria(articolo:any){
-
+const dialogRef = this.dialog.open(ViewArticoloComponent,{data:[articolo,{categorie:this.categorie,luoghi:this.luoghi,tags:this.tags,temi:this.temi,personaggi:this.personaggi}]})
+dialogRef.afterClosed().subscribe((data:any)=>{this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')})
 }
 }
