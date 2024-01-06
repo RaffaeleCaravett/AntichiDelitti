@@ -9,6 +9,10 @@ export class HomeService {
 
 private visit='/api/visit'
 private articles=this.visit+'/articles'
+private categories=this.visit+'/categories'
+private places=this.visit+'/places'
+private themas=this.visit+'/themas'
+
 constructor(private http:HttpClient) { }
 
   saveVisit(body:any){
@@ -19,5 +23,14 @@ return this.http.post(environment.API_URL+this.visit,body)
   }
   getAllArticles(){
     return this.http.get(environment.API_URL+this.articles)
+  }
+  getAllTemas(){
+    return this.http.get(environment.API_URL+this.categories)
+  }
+  getAllCategories(){
+    return this.http.get(environment.API_URL+this.themas)
+  }
+  getAllPlaces(){
+    return this.http.get(environment.API_URL+this.places)
   }
 }

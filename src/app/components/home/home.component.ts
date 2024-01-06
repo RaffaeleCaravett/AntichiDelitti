@@ -20,7 +20,7 @@ visits:any[]=[]
   currentDay: number = this.currentDate.getDate();
   arguments:any[]=[]
   dataSource = new MatTableDataSource<any>();
-  displayedColumns: string[] = ['id', 'titolo', 'luogo', 'created_at','vedi'];
+  displayedColumns: string[] = ['id', 'titolo', 'luogo', 'tema','category','vedi'];
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 constructor(private homeService:HomeService,private dialog:MatDialog){}
