@@ -15,6 +15,9 @@ export class HomeComponent implements OnInit{
 searchForm:any;
 currentDate: Date = new Date();
 visits:any[]=[]
+luoghi:any[]=[]
+categoria:any[]=[]
+temi:any[]=[]
   currentYear: number = this.currentDate.getFullYear();
   currentMonth: number = this.currentDate.getMonth() + 1;
   currentDay: number = this.currentDate.getDate();
@@ -35,6 +38,7 @@ categoria:new FormControl(''),
 
 this.homeService.saveVisit({}).subscribe((data:any)=>{})
 this.updateDatasource()
+this.getAll()
 }
 search(){}
 updateDatasource(page?:number,size?:number,orderBy?:string){
@@ -48,5 +52,18 @@ vediStoria(articolo:any){
 const dialogRef = this.dialog.open(ViewArticleComponent,{data:articolo})
 dialogRef.afterClosed().subscribe((data:any)=>{this.updateDatasource(this.paginator.pageIndex,this.paginator.pageSize,'id')})
   }
-
+getAll(){
+  this.homeService.getAllCategories().subscribe((data:any)=>{
+this.categoria=data
+console.log(data)
+  })
+  this.homeService.getAllTemas().subscribe((data:any)=>{
+this.temi=data
+console.log(data)
+  })
+  this.homeService.getAllPlaces().subscribe((data:any)=>{
+this.luoghi=data
+console.log(data)
+  })
+}
 }

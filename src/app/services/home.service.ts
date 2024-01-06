@@ -25,10 +25,10 @@ return this.http.post(environment.API_URL+this.visit,body)
     return this.http.get(environment.API_URL+this.articles)
   }
   getAllTemas(){
-    return this.http.get(environment.API_URL+this.categories)
+    return this.http.get(environment.API_URL+this.themas)
   }
   getAllCategories(){
-    return this.http.get(environment.API_URL+this.themas)
+    return this.http.get(environment.API_URL+this.categories)
   }
   getAllPlaces(){
     return this.http.get(environment.API_URL+this.places)

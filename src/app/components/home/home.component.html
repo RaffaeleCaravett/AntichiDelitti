@@ -30,11 +30,20 @@
           <div class="p-2"> <label for="" class="fw-bold text-success">Titolo</label>
           <input type="text" class="form-control shadow mx-2" formControlName="titolo"></div>
           <div class="p-2"><label for="" class="fw-bold text-success">Località</label>
-          <input type="text" class="form-control shadow mx-2" formControlName="localita"></div>
+          <select type="text" class="form-select shadow mx-2" formControlName="localita">
+            <option value=""></option>
+            <option value="{{c.id}}" *ngFor="let c of luoghi">{{c.luogo}}</option>
+          </select></div>
           <div class="p-2"><label for="" class="fw-bold text-success">Tema</label>
-          <input type="text" class="form-control shadow mx-2" formControlName="tema"></div>
+          <select type="text" class="form-select shadow mx-2" formControlName="tema">
+            <option value=""></option>
+            <option value="{{c.id}}" *ngFor="let c of temi">{{c.thema}}</option>
+          </select></div>
           <div class="p-2"><label for="" class="fw-bold text-success">Categoria</label>
-          <input type="text" class="form-control shadow mx-2" formControlName="categoria"></div>
+          <select type="text" class="form-select shadow mx-2" formControlName="categoria">
+            <option value=""></option>
+            <option value="{{c.id}}" *ngFor="let c of categoria">{{c.category}}</option>
+          </select></div>
           <button class="btn fs-4 p-2" (click)="search()">🔍</button>
         </form>
         </div>
