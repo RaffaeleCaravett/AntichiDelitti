@@ -12,7 +12,7 @@ import { ViewArticleComponent } from 'src/app/shared/view-article/view-article.c
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-searchForm:any;
+searchForm!:FormGroup;
 currentDate: Date = new Date();
 visits:any[]=[]
 luoghi:any[]=[]
@@ -40,7 +40,17 @@ this.homeService.saveVisit({}).subscribe((data:any)=>{})
 this.updateDatasource()
 this.getAll()
 }
-search(){}
+search(){
+this.homeService.getFilteredArticles(
+  {titolo:this.searchForm.controls['titolo'].value,
+  luogo_id:this.searchForm.controls['localita'].value,
+  tema_id:this.searchForm.controls['tema'].value,
+categoria_id:this.searchForm.controls['categoria'].value
+}
+).subscribe((data:any)=>{
+  console.log(data)
+})
+}
 updateDatasource(page?:number,size?:number,orderBy?:string){
 
   this.homeService.getAllArticles().subscribe((data:any)=>{
@@ -55,15 +65,13 @@ dialogRef.afterClosed().subscribe((data:any)=>{this.updateDatasource(this.pagina
 getAll(){
   this.homeService.getAllCategories().subscribe((data:any)=>{
 this.categoria=data
-console.log(data)
   })
   this.homeService.getAllTemas().subscribe((data:any)=>{
 this.temi=data
-console.log(data)
   })
   this.homeService.getAllPlaces().subscribe((data:any)=>{
 this.luoghi=data
-console.log(data)
   })
 }
+
 }

@@ -28,19 +28,19 @@
           <h1 class="border-bottom border-danger p-4">CERCA NEL SITO</h1>
           <form [formGroup]="searchForm" class="d-flex justify-content-center">
           <div class="p-2"> <label for="" class="fw-bold text-success">Titolo</label>
-          <input type="text" class="form-control shadow mx-2" formControlName="titolo"></div>
+          <input type="text" class="form-control shadow mx-2" formControlName="titolo" (input)="search()"></div>
           <div class="p-2"><label for="" class="fw-bold text-success">Località</label>
-          <select type="text" class="form-select shadow mx-2" formControlName="localita">
+          <select type="text" class="form-select shadow mx-2" formControlName="localita" (change)="search()">
             <option value=""></option>
             <option value="{{c.id}}" *ngFor="let c of luoghi">{{c.luogo}}</option>
           </select></div>
           <div class="p-2"><label for="" class="fw-bold text-success">Tema</label>
-          <select type="text" class="form-select shadow mx-2" formControlName="tema">
+          <select type="text" class="form-select shadow mx-2" formControlName="tema" (change)="search()">
             <option value=""></option>
             <option value="{{c.id}}" *ngFor="let c of temi">{{c.thema}}</option>
           </select></div>
           <div class="p-2"><label for="" class="fw-bold text-success">Categoria</label>
-          <select type="text" class="form-select shadow mx-2" formControlName="categoria">
+          <select type="text" class="form-select shadow mx-2" formControlName="categoria" (change)="search()">
             <option value=""></option>
             <option value="{{c.id}}" *ngFor="let c of categoria">{{c.category}}</option>
           </select></div>

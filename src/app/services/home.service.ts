@@ -33,4 +33,7 @@ return this.http.post(environment.API_URL+this.visit,body)
   getAllPlaces(){
     return this.http.get(environment.API_URL+this.places)
   }
+  getFilteredArticles(body:{}){
+    return this.http.post(environment.API_URL+this.visit+'/filtered',body)
+  }
 }
