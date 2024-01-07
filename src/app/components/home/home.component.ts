@@ -41,15 +41,22 @@ this.updateDatasource()
 this.getAll()
 }
 search(){
-this.homeService.getFilteredArticles(
+  if(this.searchForm.controls['titolo'].value!=''||this.searchForm.controls['localita'].value!=''
+  ||this.searchForm.controls['tema'].value!=''
+  ||this.searchForm.controls['categoria'].value!=''){
+    this.homeService.getFilteredArticles(
   {titolo:this.searchForm.controls['titolo'].value,
   luogo_id:this.searchForm.controls['localita'].value,
   tema_id:this.searchForm.controls['tema'].value,
 categoria_id:this.searchForm.controls['categoria'].value
 }
 ).subscribe((data:any)=>{
-  console.log(data)
+  this.dataSource=data
 })
+  }else{
+    this.updateDatasource()
+  }
+
 }
 updateDatasource(page?:number,size?:number,orderBy?:string){
 
