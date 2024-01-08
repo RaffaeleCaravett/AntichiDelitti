@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:3031',
+  API_URL: 'https://antichidelitti-6a0f1009f267.herokuapp.com',
 };
