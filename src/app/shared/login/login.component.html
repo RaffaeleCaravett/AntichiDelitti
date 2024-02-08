@@ -1,17 +1,19 @@
 <div class="container py-5">
   <div class="row text-center py-5">
     <h1>Login</h1>
-    <div class="col-md-12 py-5">
-<div class="w-50 p-5 border rounded shadow m-auto bg-light">
+    <div class="col-md-2 py-5"></div>
+    <div class="col-md-8 py-5">
+<div class="w-100 p-2 border rounded shadow m-auto bg-light">
 <form [formGroup]="loginForm" (submit)="submit()">
 <label class="py-4 fs-2">Inserisci la tua email</label>
-<input type="text" class="form-control m-1 fs-2" formControlName="email">
+<input type="text" class="form-control m-1 fs-2 w-100" formControlName="email">
 <label class="py-4 fs-2">Inserisci la password</label>
-<input type="password" class="form-control m-1 fs-2" formControlName="password">
+<input type="password" class="form-control m-1 fs-2 w-100" formControlName="password">
 <button class="btn btn-success my-2" type="submit">Login</button>
 </form>
 </div>
     </div>
+    <div class="col-md-2 py-5"></div>
     <div class="col-md-12 py-3"><h1>N.B. E' importante sapere che questo è un login dedicato ai soli amministratori del sito. E anche il solo tentativo di accedervi senza essere amministratore
       vuol dire commettere reato.
     </h1></div>
